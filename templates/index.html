@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>GIFs no WhatsApp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Adicionando fonte do Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+            body {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+}
+
+.card {
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    border: none;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+h1 {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+        }
+
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #25D366 0%, #128C7E 100%);
+        }
+
+        .form-control {
+            border-radius: 25px;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #25D366;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 0.8rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(18, 140, 126, 0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .card-img-top {
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 3px solid #25D366;
+        }
+
+        .btn-success {
+            background-color: #25D366;
+            border: none;
+            border-radius: 20px;
+            padding: 0.6rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-success:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+
+        h5 {
+            color: #2c3e50;
+            margin: 2rem 0;
+            font-weight: 600;
+        }
+
+        /* Efeito de onda decorativo no fundo */
+        .wave-bg {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin: 1rem 0;
+            }
+
+            .card-img-top {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Adicione isso se quiser ondas decorativas (opcional)
+    <img src="https://assets.website-files.com/5e6c01bb5212506d6c119069/5e6edda1b7aca15f6a6beba1_wave-bg.svg" alt="wave" class="wave-bg"> -->
+
+    <div class="container mt-5">
+        <h1>🔍 Pesquise GIFs e envie pelo WhatsApp</h1>
+
+        <form method="POST" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="query" class="form-control" placeholder="Digite algo (ex: gatos, memes)" required>
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+
+        {% if gifs %}
+            <h5>Resultados para "{{ query }}":</h5>
+            <div class="row">
+                {% for gif in gifs %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ gif }}" class="card-img-top" alt="GIF">
+                        <div class="card-body text-center">
+                            <a href="https://wa.me/?text={{ gif }}" target="_blank" class="btn btn-success">
+                                Enviar pelo WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
