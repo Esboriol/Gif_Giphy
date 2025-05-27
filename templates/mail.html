@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar E-mail</title>
+</head>
+<body>
+    <h1>Enviar E-mail</h1>
+    <form action="{{ url_for('enviar_email') }}" method="POST">
+        <label for="destinatario">Destinatário:</label>
+        <input type="email" name="destinatario" id="destinatario" required><br><br>
+
+        <label for="assunto">Assunto:</label>
+        <input type="text" name="assunto" id="assunto" required><br><br>
+
+        <label for="corpo">Corpo do E-mail:</label><br>
+        <textarea name="corpo" id="corpo" rows="4" cols="50" required></textarea><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
